@@ -1,4 +1,4 @@
-package fr.efrei.Domain;
+package main.java.fr.efrei.Domain;
 
 public class test {
     public static void main(String[] args) {
