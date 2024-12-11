@@ -1,5 +1,7 @@
 package main.java.fr.efrei.repository;
 
+import main.java.fr.efrei.domain.User;
+
 public interface IUserRepository {
     public double calculateFine(User user);
     public void displayOverdueBooks(User user);

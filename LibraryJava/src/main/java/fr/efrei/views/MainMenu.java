@@ -1,13 +1,12 @@
 package main.java.fr.efrei.views;
-
-import fr.efrei.repository.BookRepository;
-import fr.efrei.repository.LibrarianRepository;
-import fr.efrei.repository.LoanRepository;
-import fr.efrei.repository.UserRepository;
-import fr.efrei.domain.Book;
-import fr.efrei.domain.Librarian;
-import fr.efrei.domain.Loan;
-import fr.efrei.domain.User;
+import main.java.fr.efrei.domain.Book;
+import main.java.fr.efrei.domain.Librarian;
+import main.java.fr.efrei.domain.Loan;
+import main.java.fr.efrei.domain.User;
+import main.java.fr.efrei.repository.BookRepository;
+import main.java.fr.efrei.repository.LibrarianRepository;
+import main.java.fr.efrei.repository.LoanRepository;
+import main.java.fr.efrei.repository.UserRepository;
 
 import java.util.Date;
 import java.util.List;

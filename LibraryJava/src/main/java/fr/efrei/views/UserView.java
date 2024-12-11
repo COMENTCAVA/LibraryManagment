@@ -1,4 +1,8 @@
-package fr.efrei.Views;
+package main.java.fr.efrei.views;
+
+import main.java.fr.efrei.domain.Librarian;
+import main.java.fr.efrei.domain.User;
+import main.java.fr.efrei.repository.UserRepository;
 
 import java.util.Scanner;
 
@@ -49,7 +53,7 @@ public class UserView {
                 case 4 -> {
                     System.out.print("Enter the user ID to search: ");
                     int id = scanner.nextInt();
-                    var user = userRepository.findById(id);
+                    User user = userRepository.findById(id);
                     System.out.println(user != null ? user : "User not found.");
                     userRepository.alertUnreturnedBooks(user);
                     userRepository.sendOverdueNotifications(user);
