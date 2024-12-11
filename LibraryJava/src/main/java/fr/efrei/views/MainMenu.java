@@ -1,8 +1,5 @@
 package main.java.fr.efrei.views;
-import main.java.fr.efrei.domain.Book;
-import main.java.fr.efrei.domain.Librarian;
-import main.java.fr.efrei.domain.Loan;
-import main.java.fr.efrei.domain.User;
+import main.java.fr.efrei.domain.*;
 import main.java.fr.efrei.repository.BookRepository;
 import main.java.fr.efrei.repository.LibrarianRepository;
 import main.java.fr.efrei.repository.LoanRepository;
@@ -83,7 +80,7 @@ public class MainMenu {
         overdueLoan.setUser(user1);
         overdueLoan.setLoanDate(new Date(System.currentTimeMillis() - (1000L * 60 * 60 * 24 * 15))); // Emprunté il y a 15 jours
         overdueLoan.setDueDate(new Date(System.currentTimeMillis() - (1000L * 60 * 60 * 24 * 5))); // Retard de 5 jours
-        overdueLoan.setStatus("overdue");
+        overdueLoan.setStatus(LoanStatus.OVERDUE);
 
 
         // add loan to rep
@@ -158,7 +155,7 @@ public class MainMenu {
         System.out.print("Enter your name: ");
         String name = scanner.nextLine();
 
-        System.out.print("Enter your ID: ");
+        System.out.print("Enter your password/ID: ");
         int id;
         try {
             id = Integer.parseInt(scanner.nextLine());

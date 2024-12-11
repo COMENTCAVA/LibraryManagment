@@ -1,6 +1,7 @@
 package main.java.fr.efrei.repository;
 
 import main.java.fr.efrei.domain.Loan;
+import main.java.fr.efrei.domain.LoanStatus;
 import main.java.fr.efrei.domain.User;
 import main.java.fr.efrei.factory.UserBuilder;
 
@@ -10,7 +11,7 @@ import java.util.Scanner;
 
 public class UserRepository implements GeneralRepository<User>, IUserRepository {
     //attributes
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     private static final double FINE_PER_DAY = 1.0; // 1 rand per day as an example
     public List<User> getUsers() {
@@ -58,6 +59,14 @@ public class UserRepository implements GeneralRepository<User>, IUserRepository 
     }
 
     @Override
+    public User findByName(String name) {
+        return users.stream()
+                .filter(user -> user.getName().toLowerCase().contains(name.toLowerCase()))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
     public void showAll() {
         for (User user : users) {
             System.out.println(user.getName() + " (ID: " + user.getId() + ")");
@@ -72,7 +81,7 @@ public class UserRepository implements GeneralRepository<User>, IUserRepository 
 
         double fine = 0.0;
         for (Loan loan : user.getBorrowedBooks()) {
-            if ("overdue".equals(loan.getStatus()) && loan.getReturnDate() == null) {
+            if (loan.getStatus().equals(LoanStatus.OVERDUE) && loan.getReturnDate() == null) {
                 long overdueDays = (System.currentTimeMillis() - loan.getDueDate().getTime()) / (1000 * 60 * 60 * 24);
                 fine += Math.max(overdueDays, 0) * FINE_PER_DAY;
             }
@@ -89,7 +98,7 @@ public class UserRepository implements GeneralRepository<User>, IUserRepository 
         }
 
         user.getBorrowedBooks().stream()
-                .filter(loan -> "overdue".equals(loan.getStatus()))
+                .filter(loan -> loan.getStatus().equals(LoanStatus.OVERDUE))
                 .forEach(loan -> System.out.println("Book: " + loan.getBook().getTitle() + ", Due Date: " + loan.getDueDate()));
     }
 
@@ -136,7 +145,7 @@ public class UserRepository implements GeneralRepository<User>, IUserRepository 
 
         int maxAllowedBooks = 5; // Exemple : un utilisateur peut emprunter jusqu'Ã  5 livres
         int currentlyBorrowed = (int) user.getBorrowedBooks().stream()
-                .filter(loan -> "active".equals(loan.getStatus()))
+                .filter(loan -> loan.getStatus().equals(LoanStatus.ACTIVE))
                 .count();
 
         return maxAllowedBooks - currentlyBorrowed;
@@ -158,7 +167,7 @@ public class UserRepository implements GeneralRepository<User>, IUserRepository 
     @Override
     public void sendOverdueNotifications(User user) {
         for (Loan loan : user.getBorrowedBooks()) {
-            if ("overdue".equals(loan.getStatus())) {
+            if (loan.getStatus().equals(LoanStatus.OVERDUE)) {
                 System.out.println("Notification: User " + user.getName() +
                         " has an overdue book: " + loan.getBook().getTitle() +
                         " (Due Date: " + loan.getDueDate() + ").");
@@ -168,7 +177,7 @@ public class UserRepository implements GeneralRepository<User>, IUserRepository 
     @Override
     public void alertUnreturnedBooks(User user) {
         for (Loan loan : user.getBorrowedBooks()) {
-            if ("active".equals(loan.getStatus())) {
+            if (loan.getStatus().equals(LoanStatus.ACTIVE)) {
                 System.out.println("Alert: User " + user.getName() +
                         " has not returned the book: " + loan.getBook().getTitle() +
                         " (Due Date: " + loan.getDueDate() + ").");

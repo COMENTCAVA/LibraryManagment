@@ -3,11 +3,9 @@ package main.java.fr.efrei.factory;
 import main.java.fr.efrei.domain.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import java.util.ArrayList;
 public class UserBuilder {
-    private User user;
+    private final User user;
 
     public UserBuilder() {
         this.user = new User();

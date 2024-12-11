@@ -25,10 +25,11 @@ public class BookView {
                 System.out.println("2. Delete a book");
                 System.out.println("3. View all books");
                 System.out.println("4. Search for a book by ID");
-                System.out.println("5. Update a book");
-                System.out.println("6. Search a book by category");
-                System.out.println("7. View book stats");
-                System.out.println("8. Exit");
+                System.out.println("5. Search for a book by name");
+                System.out.println("6. Update a book");
+                System.out.println("7. Search a book by category");
+                System.out.println("8. View book stats");
+                System.out.println("9. Exit");
                 System.out.print("Choose an option: ");
 
                 int choice = scanner.nextInt();
@@ -54,8 +55,16 @@ public class BookView {
                         Book book = bookRepository.findById(id);
                         System.out.println(book != null ? book : "Book not found.");
                     }
-                    //update
+                    //search a book by contain name
                     case 5 -> {
+                        System.out.print("Enter the book ID to search: ");
+                        int id = scanner.nextInt();
+                        scanner.nextLine();
+                        Book book = bookRepository.findById(id);
+                        System.out.println(book != null ? book : "Book not found.");
+                    }
+                    //update
+                    case 6 -> {
                         System.out.print("Enter the ID of the book to update: ");
                         int bookId = scanner.nextInt();
                         scanner.nextLine(); // Consume leftover newline
@@ -96,7 +105,7 @@ public class BookView {
                     }
                     }
                     //search by categ
-                    case 6 -> {
+                    case 7 -> {
                         System.out.println("Search by:");
                         System.out.println("1. Title");
                         System.out.println("2. Author");
@@ -142,9 +151,9 @@ public class BookView {
                         }
                     }
                     //display book stats
-                    case 7 -> bookRepository.displayBookStatistics();
+                    case 8 -> bookRepository.displayBookStatistics();
                     //exit
-                    case 8 -> {
+                    case 9 -> {
                         System.out.println("Returning to main menu.");
                         return;
                     }

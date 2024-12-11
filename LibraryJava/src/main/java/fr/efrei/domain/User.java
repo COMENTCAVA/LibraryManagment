@@ -5,9 +5,9 @@ import java.util.List;
 
 public class User {
     //attributes
-    public int id;
+    private int id;
     private String name;
-    public List<Loan> borrowedBooks = new ArrayList<>();
+    private List<Loan> borrowedBooks = new ArrayList<>();
     private double fines;
 
     // Getters and Setters

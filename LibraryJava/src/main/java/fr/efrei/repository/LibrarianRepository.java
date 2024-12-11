@@ -10,11 +10,11 @@ import java.util.Scanner;
 
 public class LibrarianRepository implements GeneralRepository<Librarian>, ILibrarianRepository{
     //attribute
-    private List<Librarian> librarians = new ArrayList<>();
+    private final List<Librarian> librarians = new ArrayList<>();
 
     //getter
     public List<Librarian> getAll() {
-        return new ArrayList<>(librarians); // Retourne une nouvelle liste pour Ã©viter des modifications externes
+        return new ArrayList<>(librarians); // Retourne une nouvelle liste pour éviter des modifications externes
     }
 
     public List<Librarian> getLibrarians() {
@@ -43,13 +43,18 @@ public class LibrarianRepository implements GeneralRepository<Librarian>, ILibra
 
     @Override
     public void delete(int id) {
-        librarians.removeIf(librarian -> librarian.id == id);
+        librarians.removeIf(librarian -> librarian.getId() == id);
         System.out.println("Librarian deleted successfully.");
     }
 
     @Override
     public Librarian findById(int id) {
-        return librarians.stream().filter(librarian -> librarian.id == id).findFirst().orElse(null);
+        return librarians.stream().filter(librarian -> librarian.getId() == id).findFirst().orElse(null);
+    }
+
+    @Override
+    public Librarian findByName(String name) {
+        return librarians.stream().filter(librarian -> librarian.getName().toLowerCase().contains(name.toLowerCase())).findFirst().orElse(null);
     }
 
 

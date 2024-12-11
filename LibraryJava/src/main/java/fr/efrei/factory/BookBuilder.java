@@ -4,61 +4,69 @@ package main.java.fr.efrei.factory;
 import main.java.fr.efrei.domain.Book;
 
 public class BookBuilder {
-    private Book book;
+    private final Book book;
 
     public BookBuilder() {
         this.book = new Book();
     }
 
     public BookBuilder setId(int id) {
-        book.id = id;
+        this.book.setId(id);
         return this;
     }
 
     public BookBuilder setTitle(String title) {
-        book.title = title;
+        this.book.setTitle(title);
         return this;
     }
 
     public BookBuilder setAuthor(String author) {
-        book.author = author;
+        this.book.setAuthor(author);
         return this;
     }
 
     public BookBuilder setIsbn(String isbn) {
-        book.isbn = isbn;
+        this.book.setIsbn(isbn);
         return this;
     }
 
     public BookBuilder setCategory(String category) {
-        book.category = category;
+        this.book.setCategory(category);
         return this;
     }
 
     public BookBuilder setPublicationYear(int year) {
-        book.publicationYear = year;
+        this.book.setPublicationYear(year);
         return this;
     }
 
     public BookBuilder setTotalCopies(int totalCopies) {
-        book.totalCopies = totalCopies;
+        this.book.setTotalCopies(totalCopies);
         return this;
     }
 
     public BookBuilder setAvailableCopies(int availableCopies) {
-        book.availableCopies = availableCopies;
+        this.book.setAvailableCopies(availableCopies);
         return this;
     }
     public BookBuilder setLoanCount(){
-        book.loanCount = 0;
+        this.book.setLoanCount(0);
         return this;
     }
 
     public Book build() {
-        if (book.id <= 0) {
+        if (this.book.getTotalCopies() == 0) {
+            throw new IllegalArgumentException("Book total copies must be greater than 0");
+        }
+
+        if (this.book.getAvailableCopies() == 0) {
+            throw new IllegalArgumentException("Book available copies must be greater than 0");
+        }
+
+        if (this.book.getId() <= 0) {
             throw new IllegalArgumentException("Book ID must be greater than 0");
         }
-        if (book.title == null || book.title.isEmpty()) {
+        if (this.book.getTitle() == null || this.book.getTitle().isEmpty()) {
             throw new IllegalArgumentException("Book title cannot be null or empty");
         }
         return this.book;

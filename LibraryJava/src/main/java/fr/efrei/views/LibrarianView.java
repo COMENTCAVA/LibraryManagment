@@ -39,7 +39,7 @@ public class LibrarianView {
                         int id = scanner.nextInt();
                         scanner.nextLine();
                         var librarian = librarianRepository.findById(id);
-                        System.out.println(librarian != null ? librarian : "Librarian not found.");
+                        System.out.println(librarian != null ? librarian.getName() + " (ID="+ librarian.getId()+")" : "Librarian not found.");
                     }
                     case 4 -> librarianRepository.showAll();
                     case 5 -> {

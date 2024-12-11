@@ -3,15 +3,15 @@ package main.java.fr.efrei.domain;
 public class Book {
 
     //attributes
-    public int id;
-    public String title;
-    public String author;
-    public String isbn;
-    public String category;
-    public int publicationYear;
-    public int totalCopies;
-    public int availableCopies;
-    public int loanCount;
+    private int id;
+    private String title;
+    private String author;
+    private String isbn;
+    private String category;
+    private int publicationYear;
+    private int totalCopies;
+    private int availableCopies;
+    private int loanCount;
 
     // Getters and Setters
 

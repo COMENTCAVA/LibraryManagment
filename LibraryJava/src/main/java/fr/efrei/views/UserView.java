@@ -1,6 +1,5 @@
 package main.java.fr.efrei.views;
 
-import main.java.fr.efrei.domain.Librarian;
 import main.java.fr.efrei.domain.User;
 import main.java.fr.efrei.repository.UserRepository;
 
@@ -8,8 +7,8 @@ import java.util.Scanner;
 
 public class UserView {
     //att
-    private UserRepository userRepository;
-    private final Scanner scanner;
+    private final UserRepository userRepository;
+    private Scanner scanner;
     //constr
 
     public UserView(UserRepository userRepository, Scanner scanner) {
@@ -18,7 +17,7 @@ public class UserView {
     }
 
     public void displayMenu() {
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("\n=== User Management ===");
@@ -55,6 +54,7 @@ public class UserView {
                     int id = scanner.nextInt();
                     User user = userRepository.findById(id);
                     System.out.println(user != null ? user : "User not found.");
+                    assert user != null;
                     userRepository.alertUnreturnedBooks(user);
                     userRepository.sendOverdueNotifications(user);
                 }
