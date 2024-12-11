@@ -1,10 +1,8 @@
 package main.java.fr.efrei.repository;
 
-import fr.efrei.Factory.UserBuilder;
-import fr.efrei.domain.User;
-import fr.efrei.Factory.UserBuilder;
-import fr.efrei.domain.Loan;
-import fr.efrei.domain.User;
+import main.java.fr.efrei.domain.Loan;
+import main.java.fr.efrei.domain.User;
+import main.java.fr.efrei.factory.UserBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

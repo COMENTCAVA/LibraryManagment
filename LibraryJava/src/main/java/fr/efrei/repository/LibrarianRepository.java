@@ -1,8 +1,8 @@
 package main.java.fr.efrei.repository;
 
-import fr.efrei.Factory.LibrarianBuilder;
-import fr.efrei.domain.Librarian;
-import fr.efrei.domain.User;
+
+import main.java.fr.efrei.domain.Librarian;
+import main.java.fr.efrei.factory.LibrarianBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

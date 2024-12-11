@@ -1,5 +1,7 @@
 package main.java.fr.efrei.repository;
 
+import main.java.fr.efrei.domain.Loan;
+
 public interface ILoanRepository {
     public void createLoan(BookRepository bookRepo, UserRepository userRepo);
     public void reserveBook(BookRepository bookRepo, UserRepository userRepo, int bookId, int userId);

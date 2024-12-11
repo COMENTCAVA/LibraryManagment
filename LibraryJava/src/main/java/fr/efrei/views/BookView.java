@@ -1,4 +1,4 @@
-package fr.efrei.Views;
+package main.java.fr.efrei.views;
 
 import main.java.fr.efrei.domain.Book;
 import main.java.fr.efrei.repository.BookRepository;

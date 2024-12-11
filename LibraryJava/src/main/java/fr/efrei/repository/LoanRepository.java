@@ -1,7 +1,8 @@
 package main.java.fr.efrei.repository;
-import fr.efrei.domain.Book;
-import fr.efrei.domain.Loan;
-import fr.efrei.domain.User;
+
+import main.java.fr.efrei.domain.Book;
+import main.java.fr.efrei.domain.Loan;
+import main.java.fr.efrei.domain.User;
 
 import java.util.*;
 

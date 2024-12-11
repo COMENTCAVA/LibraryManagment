@@ -1,5 +1,7 @@
-package fr.efrei.Views;
+package main.java.fr.efrei.views;
 import main.java.fr.efrei.repository.BookRepository;
+import main.java.fr.efrei.repository.LoanRepository;
+import main.java.fr.efrei.repository.UserRepository;
 
 import java.util.Scanner;
 

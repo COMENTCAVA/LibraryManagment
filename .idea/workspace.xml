@@ -5,15 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e612434-376b-43a5-8970-17768c62769e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/ILibrarianRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/ILoanRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/IUserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/LibrarianRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/LoanRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/ILibrarianRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/ILibrarianRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/ILoanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/ILoanRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/IUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/IUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/LibrarianRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/LibrarianRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/LoanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/LoanRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/BookView.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/BookView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/LibrarianView.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/LibrarianView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/LoanView.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/LoanView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/UserView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

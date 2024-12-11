@@ -1,4 +1,6 @@
-package fr.efrei.Views;
+package main.java.fr.efrei.views;
+
+import main.java.fr.efrei.repository.LibrarianRepository;
 
 import java.util.Scanner;
 public class LibrarianView {
