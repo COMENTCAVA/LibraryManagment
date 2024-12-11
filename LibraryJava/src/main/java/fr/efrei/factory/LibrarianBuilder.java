@@ -1,6 +1,7 @@
-package fr.efrei.Factory;
+package main.java.fr.efrei.factory;
 
-import fr.efrei.domain.Librarian;
+
+import main.java.fr.efrei.domain.Librarian;
 
 public class LibrarianBuilder {
     private Librarian librarian;
