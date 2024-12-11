@@ -1,8 +1,4 @@
 package fr.efrei.Views;
-import fr.efrei.Repository.BookRepository;
-import fr.efrei.Repository.LibrarianRepository;
-import fr.efrei.Repository.LoanRepository;
-import fr.efrei.Repository.UserRepository;
 
 import java.util.Scanner;
 public class LibrarianView {

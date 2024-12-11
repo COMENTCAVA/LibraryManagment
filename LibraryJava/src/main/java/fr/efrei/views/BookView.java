@@ -1,6 +1,7 @@
 package fr.efrei.Views;
-import fr.efrei.Repository.BookRepository;
-import fr.efrei.domain.Book;
+
+import main.java.fr.efrei.domain.Book;
+import main.java.fr.efrei.repository.BookRepository;
 
 import java.util.Scanner;
 

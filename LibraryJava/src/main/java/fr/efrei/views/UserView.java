@@ -1,11 +1,5 @@
 package fr.efrei.Views;
 
-import fr.efrei.Repository.ILoanRepository;
-import fr.efrei.Repository.LoanRepository;
-import fr.efrei.Repository.UserRepository;
-import fr.efrei.domain.User;
-
-
 import java.util.Scanner;
 
 public class UserView {
