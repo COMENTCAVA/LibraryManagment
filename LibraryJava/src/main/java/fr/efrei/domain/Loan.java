@@ -10,7 +10,7 @@ public class Loan {
     private Date loanDate;
     private Date dueDate;
     private Date returnDate;
-    private String status; // can be "active", "returned", "overdue"
+    private LoanStatus status; // can be "active", "returned", "overdue"
 
     // Getters and Setters
 
@@ -62,11 +62,11 @@ public class Loan {
         this.returnDate = returnDate;
     }
 
-    public String getStatus() {
+    public LoanStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(LoanStatus status) {
         this.status = status;
     }
 

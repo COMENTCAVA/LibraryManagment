@@ -2,16 +2,17 @@ package main.java.fr.efrei.repository;
 
 import main.java.fr.efrei.domain.Book;
 import main.java.fr.efrei.domain.Loan;
+import main.java.fr.efrei.domain.LoanStatus;
 import main.java.fr.efrei.domain.User;
 
 import java.util.*;
 
 public class LoanRepository implements ILoanRepository {
     //attributes
-    private List<Loan> loans = new ArrayList<>();
+    private final List<Loan> loans = new ArrayList<>();
     private UserRepository userRepository;
     private int currentLoanId = 1;
-    private Map<Integer, List<Integer>> reservations = new HashMap<>();
+    private final Map<Integer, List<Integer>> reservations = new HashMap<>();
 
     //getters
     public List<Loan> getLoans() {
@@ -21,8 +22,6 @@ public class LoanRepository implements ILoanRepository {
     public int getCurrentLoanId() {
         return currentLoanId;
     }
-
-
 
     //create
     @Override
@@ -78,7 +77,7 @@ public class LoanRepository implements ILoanRepository {
         //setting due date at 2 weeks after reservation as an example
         long twoWeeksInMillis = 1000L * 60 * 60 * 24 * 14; // 2 weeks
         newLoan.setDueDate(new Date(System.currentTimeMillis() + twoWeeksInMillis));
-        newLoan.setStatus("active");
+        newLoan.setStatus(LoanStatus.ACTIVE);
 
         //update book/user infos
         book.setAvailableCopies(book.getAvailableCopies() - 1);
@@ -101,17 +100,17 @@ public class LoanRepository implements ILoanRepository {
             return;
         }
 
-        if ("overdue".equals(loan.getStatus())) {
+        if (loan.getStatus().equals(LoanStatus.OVERDUE)) {
             System.out.println("User " + loan.getUser() + " need to pay a fine of " + loan.getUser().getFines());
         }
 
-        if ("active".equals(loan.getStatus())) {
+        if (loan.getStatus().equals(LoanStatus.ACTIVE)) {
             System.out.println("Loan already returned.");
             return;
         }
 
         // update loan
-        loan.setStatus("returned");
+        loan.setStatus(LoanStatus.RETURNED);
         loan.setReturnDate(new Date());
 
         // update the book
@@ -140,7 +139,7 @@ public class LoanRepository implements ILoanRepository {
     @Override
     public void showOverdueLoansByUser(int userId) {
         loans.stream()
-                .filter(loan -> loan.getUser().getId() == userId && "overdue".equals(loan.getStatus()))
+                .filter(loan -> loan.getUser().getId() == userId && loan.getStatus().equals(LoanStatus.OVERDUE))
                 .forEach(loan -> System.out.println("Loan ID: " + loan.getLoanId() +
                         ", Book: " + loan.getBook().getTitle() +
                         ", Due Date: " + loan.getDueDate()));
@@ -151,7 +150,7 @@ public class LoanRepository implements ILoanRepository {
     public void renewLoan(int loanId, int extraDays) {
         //search for the loan
         Loan loan = findById(loanId);
-        if (loan == null || !"active".equals(loan.getStatus())) {
+        if (loan == null || !loan.getStatus().equals(LoanStatus.ACTIVE)) {
             System.out.println("Loan not found or is not active.");
             return;
         }
@@ -173,7 +172,7 @@ public class LoanRepository implements ILoanRepository {
         // books currently borrowed
         System.out.println("\nCurrently Borrowed Books:");
         loans.stream()
-                .filter(loan -> "active".equals(loan.getStatus()))
+                .filter(loan -> loan.getStatus().equals(LoanStatus.ACTIVE))
                 .forEach(loan -> System.out.println("Loan ID: " + loan.getLoanId() +
                         ", Book: " + loan.getBook().getTitle() +
                         ", Borrowed by: " + loan.getUser().getName()));
@@ -181,7 +180,7 @@ public class LoanRepository implements ILoanRepository {
         // late books
         System.out.println("\nOverdue Books:");
         loans.stream()
-                .filter(loan -> "overdue".equals(loan.getStatus()) &&
+                .filter(loan -> loan.getStatus().equals(LoanStatus.OVERDUE) &&
                         loan.getDueDate().before(new Date()))
                 .forEach(loan -> System.out.println("Loan ID: " + loan.getLoanId() +
                         ", Book: " + loan.getBook().getTitle() +

@@ -5,17 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e612434-376b-43a5-8970-17768c62769e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/ILibrarianRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/ILibrarianRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/ILoanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/ILoanRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/IUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/IUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/domain/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/domain/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/domain/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/domain/Librarian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/domain/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/domain/Loan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/factory/BookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/factory/BookBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/factory/LibrarianBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/factory/LibrarianBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/factory/LoanBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/factory/LoanBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/factory/UserBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/factory/UserBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/BookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/GeneralRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/GeneralRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/LibrarianRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/LibrarianRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/LoanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/LoanRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/BookView.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/BookView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/LibrarianView.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/LibrarianView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/LoanView.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/LoanView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/views/UserView.java" afterDir="false" />
     </list>
@@ -27,8 +32,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -47,25 +52,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/comemassaini/Desktop/Github/LibraryManagment/LibraryJava/src/main/java/fr/efrei/repository&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainMenu.executor": "Run",
+    "Application.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/comemassaini/Desktop/Github/LibraryManagment/LibraryJava/src/main/java/fr/efrei/repository",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/LibraryJava/src/main/java/fr/efrei/repository" />

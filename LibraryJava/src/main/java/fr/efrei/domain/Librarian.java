@@ -2,8 +2,8 @@ package main.java.fr.efrei.domain;
 
 public class Librarian {
     //attributes
-    public String name;
-    public int id;
+    private String name;
+    private int id;
 
     // Getters and Setters
 

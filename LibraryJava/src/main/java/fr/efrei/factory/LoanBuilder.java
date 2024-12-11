@@ -2,12 +2,13 @@ package main.java.fr.efrei.factory;
 
 import main.java.fr.efrei.domain.Book;
 import main.java.fr.efrei.domain.Loan;
+import main.java.fr.efrei.domain.LoanStatus;
 import main.java.fr.efrei.domain.User;
 
 import java.util.Date;
 
 public class LoanBuilder {
-    private Loan loan;
+    private final Loan loan;
 
     public LoanBuilder() {
         this.loan = new Loan();
@@ -58,7 +59,7 @@ public class LoanBuilder {
         return this;
     }
 
-    public LoanBuilder setStatus(String status) {
+    public LoanBuilder setStatus(LoanStatus status) {
         loan.setStatus(status);
         return this;
     }

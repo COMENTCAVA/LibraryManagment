@@ -11,7 +11,7 @@ import main.java.fr.efrei.factory.BookBuilder;
 
 public class BookRepository implements GeneralRepository<Book>, IBookRepository {
     //List of Books
-    private List<Book> books = new ArrayList<>();
+    private final List<Book> books = new ArrayList<>();
     //getter
     public List<Book> getBooks() {
         return books;
@@ -80,9 +80,18 @@ public class BookRepository implements GeneralRepository<Book>, IBookRepository 
     }
 
     @Override
+    public Book findByName(String name) {
+        return books.stream()
+                .filter(book -> book.getTitle().toLowerCase().contains(name.toLowerCase()))
+                .findFirst()
+                .orElse(null);
+    }
+
+
+    @Override
     public void showAll() {
         for (Book book : books) {
-            System.out.println(book.getTitle() + " - " + book.getAuthor());
+            System.out.println(book.getTitle() + " - " + book.getAuthor() + " - " + book.getPublicationYear());
         }
     }
 
@@ -134,13 +143,13 @@ public class BookRepository implements GeneralRepository<Book>, IBookRepository 
         List<Book> mostBorrowedBooks = books.stream()
                 .sorted(Comparator.comparingInt(Book::getLoanCount).reversed())
                 .limit(5)
-                .collect(Collectors.toList());
+                .toList();
 
         // less borrowed books
         List<Book> leastBorrowedBooks = books.stream()
                 .sorted(Comparator.comparingInt(Book::getLoanCount))
                 .limit(5)
-                .collect(Collectors.toList());
+                .toList();
 
         // Display stats
         System.out.println("=== Book Statistics ===");
