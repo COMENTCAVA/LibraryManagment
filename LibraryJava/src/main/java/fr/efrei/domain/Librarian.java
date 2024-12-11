@@ -1,4 +1,4 @@
-package fr.efrei.domain;
+package main.java.fr.efrei.domain;
 
 public class Librarian {
     //attributes
