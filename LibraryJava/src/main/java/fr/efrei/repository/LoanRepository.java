@@ -19,10 +19,6 @@ public class LoanRepository implements ILoanRepository {
         return loans;
     }
 
-    public int getCurrentLoanId() {
-        return currentLoanId;
-    }
-
     //create
     @Override
     public void createLoan(BookRepository bookRepo, UserRepository userRepo) {
