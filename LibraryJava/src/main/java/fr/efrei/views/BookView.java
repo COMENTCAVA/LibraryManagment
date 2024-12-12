@@ -57,10 +57,10 @@ public class BookView {
                     }
                     //search a book by contain name
                     case 5 -> {
-                        System.out.print("Enter the book ID to search: ");
-                        int id = scanner.nextInt();
+                        System.out.print("Enter the book name to search: ");
+                        String name = scanner.next();
                         scanner.nextLine();
-                        Book book = bookRepository.findById(id);
+                        Book book = bookRepository.findByName(name);
                         System.out.println(book != null ? book : "Book not found.");
                     }
                     //update
