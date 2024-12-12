@@ -1,128 +1,120 @@
 package main.java.fr.efrei.views;
+
 import main.java.fr.efrei.domain.*;
-import main.java.fr.efrei.repository.BookRepository;
-import main.java.fr.efrei.repository.LibrarianRepository;
-import main.java.fr.efrei.repository.LoanRepository;
-import main.java.fr.efrei.repository.UserRepository;
+import main.java.fr.efrei.factory.BookBuilder;
+import main.java.fr.efrei.factory.LibrarianBuilder;
+import main.java.fr.efrei.factory.LoanBuilder;
+import main.java.fr.efrei.factory.UserBuilder;
+import main.java.fr.efrei.repository.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class MainMenu {
+
+    private static final BookRepository bookRepository = new BookRepository();
+    private static final LoanRepository loanRepository = new LoanRepository();
+    private static final UserRepository userRepository = new UserRepository();
+    private static final LibrarianRepository librarianRepository = new LibrarianRepository();
+
     public static void main(String[] args) {
-        //initialization for testing purposes
+        initializeData();
 
+        Librarian admin = initializeLibrarian();
+        librarianRepository.getLibrarians().add(admin);
 
-        // Initialize repositories
-        BookRepository bookRepository = new BookRepository();
-        LoanRepository loanRepository = new LoanRepository();
-        UserRepository userRepository = new UserRepository();
-        LibrarianRepository librarianRepository = new LibrarianRepository();
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("=== Welcome to the Library Management System ===");
+            Librarian currentLibrarian = authenticateLibrarian(scanner);
 
-        // Initialize user
-        User user1 = new User();
-        user1.setId(1);
-        user1.setName("Alice");
+            if (currentLibrarian == null) {
+                System.out.println("Invalid name or ID. Exiting system.");
+                return;
+            }
 
-        User user2 = new User();
-        user2.setId(2);
-        user2.setName("Bob");
+            BookView bookView = new BookView(bookRepository, scanner);
+            LoanView loanView = new LoanView(loanRepository, bookRepository, userRepository, scanner);
+            UserView userView = new UserView(userRepository, scanner);
+            LibrarianView librarianView = new LibrarianView(librarianRepository, scanner);
 
-        // add users to rep
-        List<User> users = userRepository.getUsers();
-        users.add(user1);
-        users.add(user2);
+            runMainMenu(scanner, bookView, loanView, userView, librarianView);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
+    private static void initializeData() {
+        User user1 = new UserBuilder()
+                .setId(1)
+                .setName("Alice")
+                .build();
 
-        // initialized non borrowed books
-        Book book1 = new Book();
-        book1.setId(1);
-        book1.setTitle("Clean Code");
-        book1.setAuthor("Robert C. Martin");
-        book1.setIsbn("111111111");
-        book1.setCategory("Programming");
-        book1.setPublicationYear(2008);
-        book1.setTotalCopies(5);
-        book1.setAvailableCopies(5);
+        User user2 = new UserBuilder()
+                .setId(2)
+                .setName("Bob")
+                .build();
 
-        Book book2 = new Book();
-        book2.setId(2);
-        book2.setTitle("The Pragmatic Programmer");
-        book2.setAuthor("Andrew Hunt and David Thomas");
-        book2.setIsbn("222222222");
-        book2.setCategory("Programming");
-        book2.setPublicationYear(1999);
-        book2.setTotalCopies(3);
-        book2.setAvailableCopies(3);
+        userRepository.getUsers().addAll(List.of(user1, user2));
 
-        // initialize book with overdue status
-        Book overdueBook = new Book();
-        overdueBook.setId(3);
-        overdueBook.setTitle("Design Patterns");
-        overdueBook.setAuthor("Erich Gamma et al.");
-        overdueBook.setIsbn("333333333");
-        overdueBook.setCategory("Software Engineering");
-        overdueBook.setPublicationYear(1994);
-        overdueBook.setTotalCopies(2);
-        overdueBook.setAvailableCopies(1); // 1 copy already borrowed for overdue example
+        Book book1 = new BookBuilder()
+                .setId(1)
+                .setTitle("Clean Code")
+                .setAuthor("Robert C. Martin")
+                .setIsbn("111111111")
+                .setCategory("Programming")
+                .setPublicationYear(2008)
+                .setTotalCopies(5)
+                .setAvailableCopies(5)
+                .build();
 
-        // add books to the rep
-        List<Book> books = bookRepository.getBooks();
-        books.add(book1);
-        books.add(book2);
-        books.add(overdueBook);
+        Book book2 = new BookBuilder()
+                .setId(2)
+                .setTitle("The Pragmatic Programmer")
+                .setAuthor("Andrew Hunt and David Thomas")
+                .setIsbn("222222222")
+                .setCategory("Programming")
+                .setPublicationYear(1999)
+                .setTotalCopies(3)
+                .setAvailableCopies(3)
+                .build();
 
-        // create overdue loan to test fine calculation and rreturn function
-        Loan overdueLoan = new Loan();
-        overdueLoan.setLoanId(1);
-        overdueLoan.setBook(overdueBook);
-        overdueLoan.setUser(user1);
-        overdueLoan.setLoanDate(new Date(System.currentTimeMillis() - (1000L * 60 * 60 * 24 * 15))); // Emprunté il y a 15 jours
-        overdueLoan.setDueDate(new Date(System.currentTimeMillis() - (1000L * 60 * 60 * 24 * 5))); // Retard de 5 jours
-        overdueLoan.setStatus(LoanStatus.OVERDUE);
+        Book overdueBook = new BookBuilder()
+                .setId(3)
+                .setTitle("Design Patterns")
+                .setAuthor("Erich Gamma et al.")
+                .setIsbn("333333333")
+                .setCategory("Software Engineering")
+                .setPublicationYear(1994)
+                .setTotalCopies(2)
+                .setAvailableCopies(1)
+                .build();
 
+        bookRepository.getBooks().addAll(List.of(book1, book2, overdueBook));
 
-        // add loan to rep
-        List<Loan> loans = loanRepository.getLoans();
-        loans.add(overdueLoan);
+        Loan overdueLoan = new LoanBuilder()
+                .setLoanId(1)
+                .setBook(overdueBook)
+                .setUser(user1)
+                .setLoanDate(new Date(System.currentTimeMillis() - (1000L * 60 * 60 * 24 * 15)))
+                .setDueDate(new Date(System.currentTimeMillis() - (1000L * 60 * 60 * 24 * 5)))
+                .setStatus(LoanStatus.OVERDUE)
+                .build();
 
-        // update user and book concerned
+        loanRepository.getLoans().add(overdueLoan);
         user1.getBorrowedBooks().add(overdueLoan);
         overdueBook.setAvailableCopies(overdueBook.getAvailableCopies() - 1);
-        double fine = userRepository.calculateFine(user1);
-        user1.setFines(fine);
-        //end of prompt for data
+        user1.setFines(userRepository.calculateFine(user1));
+    }
 
+    private static Librarian initializeLibrarian() {
+        return new LibrarianBuilder()
+                .setId(1)
+                .setName("admin")
+                .build();
+    }
 
-        // ---------------------GENERAL MENU---------------------
-        //initialize librarian
-        Librarian admin = new Librarian();
-        admin.setId(1);
-        admin.setName("admin");
-        //add librarian to rep
-        List<Librarian> librarians = librarianRepository.getLibrarians();
-        librarians.add(admin);
-
-        // Initialize shared scanner
-        Scanner scanner = new Scanner(System.in);
-
-        // Authentication step
-        System.out.println("=== Welcome to the Library Management System ===");
-        Librarian currentLibrarian = authenticateLibrarian(librarianRepository, scanner);
-
-        if (currentLibrarian == null) {
-            System.out.println("Invalid name or ID. Exiting system.");
-            return;
-        }
-
-        // Initialize views
-        BookView bookView = new BookView(bookRepository, scanner);
-        LoanView loanView = new LoanView(loanRepository, bookRepository, userRepository, scanner);
-        UserView userView = new UserView(userRepository, scanner);
-        LibrarianView librarianView = new LibrarianView(librarianRepository, scanner);
-
-        // Main menu loop
+    private static void runMainMenu(Scanner scanner, BookView bookView, LoanView loanView, UserView userView, LibrarianView librarianView) {
         while (true) {
             System.out.println("\n=== Main Menu ===");
             System.out.println("1. Librarian Management");
@@ -149,23 +141,17 @@ public class MainMenu {
         }
     }
 
-
-
-    public static Librarian authenticateLibrarian(LibrarianRepository librarianRepository, Scanner scanner) {
+    private static Librarian authenticateLibrarian(Scanner scanner) {
         System.out.print("Enter your name: ");
         String name = scanner.nextLine();
 
         System.out.print("Enter your password/ID: ");
-        int id;
         try {
-            id = Integer.parseInt(scanner.nextLine());
+            int id = Integer.parseInt(scanner.nextLine());
+            return librarianRepository.findByNameAndId(name, id);
         } catch (NumberFormatException e) {
             System.out.println("Invalid ID format.");
             return null;
         }
-
-        // Recherche du bibliothécaire dans le repository
-        return librarianRepository.findByNameAndId(name, id);
     }
 }
-

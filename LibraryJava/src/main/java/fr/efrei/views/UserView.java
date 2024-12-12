@@ -25,11 +25,12 @@ public class UserView {
             System.out.println("2. Delete a user");
             System.out.println("3. View all users");
             System.out.println("4. Search for a user by ID");
-            System.out.println("5. Calculate user's fines");
-            System.out.println("6. Update user details");
-            System.out.println("7. Show User Loan History");
-            System.out.println("8. Show number of loan still available");
-            System.out.println("9. Exit");
+            System.out.println("5. Search for a user by name");
+            System.out.println("6. Calculate user's fines");
+            System.out.println("7. Update user details");
+            System.out.println("8. Show User Loan History");
+            System.out.println("9. Show number of loan still available");
+            System.out.println("10. Exit");
 
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
@@ -58,20 +59,30 @@ public class UserView {
                     userRepository.alertUnreturnedBooks(user);
                     userRepository.sendOverdueNotifications(user);
                 }
-                //calculate user fine
+                //search by name
                 case 5 -> {
+                    System.out.print("Enter the user name to search: ");
+                    String name = scanner.next();
+                    User user = userRepository.findByName(name);
+                    System.out.println(user != null ? user : "User not found.");
+                    assert user != null;
+                    userRepository.alertUnreturnedBooks(user);
+                    userRepository.sendOverdueNotifications(user);
+                }
+                //calculate user fine
+                case 6 -> {
                     System.out.print("Enter the user ID to calculate fines: ");
                     int id = scanner.nextInt();
                     var user = userRepository.findById(id);
                     if (user != null) {
                         double fine = userRepository.calculateFine(user);
-                        System.out.println("User " + user.getName() + " has a total fine of: " + fine);
+                        System.out.println("User " + user.getName() + " has a total fine of: " + fine + "$");
                     } else {
                         System.out.println("User not found.");
                     }
                 }
                 //update user
-                case 6 -> {
+                case 7 -> {
                     System.out.print("Enter User ID to update: ");
                     int userId = scanner.nextInt();
                     scanner.nextLine();
@@ -81,21 +92,21 @@ public class UserView {
                     userRepository.updateUser(userId, newName);
                 }
                 //display loan history
-                case 7 -> {
+                case 8 -> {
                     System.out.print("Enter User ID to view loan history: ");
                     int userId = scanner.nextInt();
 
                     userRepository.showUserLoanHistory(userId);
                 }
                 //check number of loan still available
-                case 8 -> {
+                case 9 -> {
                     System.out.print("Enter User ID to check remaining books: ");
                     int userId = scanner.nextInt();
 
                     userRepository.showRemainingBooksToBorrow(userId);
                 }
                 //exit
-                case 9 -> {
+                case 10 -> {
                     System.out.println("Returning to main menu.");
                     return;
                 }

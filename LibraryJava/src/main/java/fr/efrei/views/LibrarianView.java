@@ -19,8 +19,9 @@ public class LibrarianView {
                 System.out.println("1. Add Librarian");
                 System.out.println("2. Delete Librarian");
                 System.out.println("3. Find Librarian by ID");
-                System.out.println("4. Show All Librarians");
-                System.out.println("5. Exit");
+                System.out.println("4. Find Librarian by name");
+                System.out.println("5. Show All Librarians");
+                System.out.println("6. Exit");
                 System.out.print("Choose an option: ");
 
                 int choice = scanner.nextInt();
@@ -41,8 +42,15 @@ public class LibrarianView {
                         var librarian = librarianRepository.findById(id);
                         System.out.println(librarian != null ? librarian.getName() + " (ID="+ librarian.getId()+")" : "Librarian not found.");
                     }
-                    case 4 -> librarianRepository.showAll();
-                    case 5 -> {
+                    case 4 -> {
+                        System.out.print("Enter Librarian Name to find: ");
+                        String name = scanner.next();
+                        scanner.nextLine();
+                        var librarian = librarianRepository.findByName(name);
+                        System.out.println(librarian != null ? librarian.getName() + " (ID="+ librarian.getId()+")" : "Librarian not found.");
+                    }
+                    case 5 -> librarianRepository.showAll();
+                    case 6 -> {
                         System.out.println("Returning to main menu.");
                         return;
                     }
